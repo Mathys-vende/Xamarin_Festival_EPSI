@@ -26,6 +26,7 @@ namespace plz.ViewModels
         public ProgrammationViewModel()
         {
             Title = "Test";
+            
             Programmations = new ObservableCollection<Programmation>();
             LoadProgrammationsCommand = new Command(async () => await ExecuteLoadProgrammationCommand());
             ProgrammationTapped = new Command<Programmation>(OnProgrammationSelected);

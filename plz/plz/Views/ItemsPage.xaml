@@ -5,8 +5,9 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:plz.ViewModels"  
              xmlns:model="clr-namespace:plz.Models"  
-             x:Name="BrowseItemsPage">
-    
+             x:Name="BrowseItemsPage"
+             BackgroundImage="">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding LoadProgrammationsCommand}" />
     </ContentPage.ToolbarItems>
@@ -15,30 +16,40 @@
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <RefreshView x:DataType="local:ProgrammationViewModel" Command="{Binding LoadProgrammationsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Programmations}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Programmation">
-                        <Label Text="{Binding Heure}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding artiste.Nom}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProgrammationViewModel}}, Path=ProgrammationTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout>
+            <ListView x:Name="ItemsListView" 
+            ItemsSource="{Binding Programmations}"
+            VerticalOptions="FillAndExpand"
+             HasUnevenRows="true"
+             RefreshCommand="{Binding LoadProgrammationsCommand}"
+             IsPullToRefreshEnabled="true"
+             IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Frame HasShadow="True" >
+                                    <StackLayout x:DataType="model:Programmation">
+                                        <Label Text="{Binding Heure}" 
+                                            LineBreakMode="NoWrap" 
+                                            FontSize="16" />
+                                        <Label Text="{Binding artiste.Nom}" 
+                                            LineBreakMode="NoWrap" 
+                                            FontSize="16" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                NumberOfTapsRequired="1"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProgrammationViewModel}}, Path=ProgrammationTapped}"		
+                                                CommandParameter="{Binding .}">
+                                            </TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </RefreshView>
 </ContentPage>

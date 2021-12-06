@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="plz.Views.ProgrammationDetailPage"
              Title="{Binding Title}"
-             BackgroundImage="icon_feed.png">
+             BackgroundImage="https://cdns-images.dzcdn.net/images/artist/7889d4bea0c2be97eec34ddac2f2a104/500x500.jpg">
 
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Artiste:" FontSize="Medium" />
         <Label Text="{Binding Artiste.Nom}" FontSize="Small"/>
         <Label Text="Scene:" FontSize="Medium" />
-        <Label Text="{Binding Scene.Nom}" FontSize="Small"/>
+        <Label Text="{Binding Scene.nom}" FontSize="Small"/>
         <Label Text="Heure:" FontSize="Medium" />
         <Label Text="{Binding ProgrammationDate}" FontSize="Small"/>
     </StackLayout>
