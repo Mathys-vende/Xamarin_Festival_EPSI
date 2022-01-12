@@ -16,7 +16,7 @@ namespace plz.Services
 
     public class ApiArtistes : IArtisteStore
     {
-        private const string URL = "http://192.168.1.96:7016/api/Artistes";
+        private const string URL = "http://192.168.1.97:7016/api/Artistes";
 
         public async Task<bool> AddArtiste(Artiste artiste)
         {

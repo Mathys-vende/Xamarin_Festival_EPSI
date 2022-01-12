@@ -4,14 +4,17 @@
              x:Class="plz.Views.ProgrammationDetailPage"
              Title="{Binding Title}"
              BackgroundImage="icon_feed.png">
-
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Artiste:" FontSize="Medium" />
-        <Label Text="{Binding Artiste.Nom}" FontSize="Small"/>
-        <Label Text="Scene:" FontSize="Medium" />
-        <Label Text="{Binding Scene.Nom}" FontSize="Small"/>
+        <Label Text="Artiste:" FontSize="32" />
+        <Label Text="{Binding Artiste.Nom }" FontSize="30"/>
+        <StackLayout Grid.Row="1" Orientation="Horizontal">
+            <Image Aspect="AspectFit" Source="{Binding Image}" HeightRequest="10" WidthRequest="20" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+        <Label Text="" FontSize="15" />
+        <Label Text="Scene:" FontSize="25" />
+        <Label Text="{Binding Scene.Nom}" FontSize="23"/>
+        <Label Text="" FontSize="15" />
         <Label Text="Heure:" FontSize="Medium" />
         <Label Text="{Binding ProgrammationDate}" FontSize="Small"/>
     </StackLayout>
-
 </ContentPage>
