@@ -1,4 +1,5 @@
-﻿using plz.ViewModels;
+﻿using plz.Services;
+using plz.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,22 @@ namespace plz.Views
         {
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
+        }
+        private async void ButtonLogin_Clicked(object sender, EventArgs e)
+        {
+            LoginService services = new LoginService();
+
+            var getLoginDetails = await services.CheckLoginIfExists(EntryEmail.Text, EntryPassword.Text);
+
+            if (getLoginDetails)
+            {
+                await DisplayAlert("Login success", "You are login", "Okay", "Cancel");
+                await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+            }
+            else
+            {
+                await DisplayAlert("Login failed", "Username or Password is incorrect or not exists", "Okay", "Cancel");
+            }
         }
     }
 }
